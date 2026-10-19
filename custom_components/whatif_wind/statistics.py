@@ -19,8 +19,13 @@ from .power import compute_power, to_ms
 
 
 def statistic_id(entry_id: str, turbine_id: str) -> str:
-    """ID statistic esterna per la serie energia di una turbina."""
-    return f"{DOMAIN}:{entry_id}_{turbine_id}_energy"
+    """ID statistic esterna per la serie energia di una turbina.
+
+    Il recorder accetta solo `[a-z0-9_]` dopo i due punti, mentre gli entry_id
+    di HA sono ULID in maiuscolo: senza `lower()` ogni scrittura fallisce con
+    "Invalid statistic_id".
+    """
+    return f"{DOMAIN}:{entry_id}_{turbine_id}_energy".lower()
 
 
 def _floor_hour(dt: datetime) -> datetime:

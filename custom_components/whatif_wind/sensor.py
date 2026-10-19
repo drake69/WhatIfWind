@@ -51,7 +51,9 @@ async def async_setup_entry(
 
     # First refresh; errors must not block setup (historical data may be empty
     # on the very first start).
-    await coordinator.async_config_entry_first_refresh()
+    # async_refresh() logs failures instead of raising ConfigEntryNotReady,
+    # which HA forbids inside a forwarded platform.
+    await coordinator.async_refresh()
 
 
 def _device_info(entry: ConfigEntry, turbine: dict[str, Any]) -> DeviceInfo:
