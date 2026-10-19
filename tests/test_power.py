@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import math
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from unittest.mock import MagicMock
 
 import pytest
@@ -271,7 +271,7 @@ def _state(speed: float, ts: datetime) -> MagicMock:
     return s
 
 
-T0 = datetime(2024, 6, 1, tzinfo=timezone.utc)
+T0 = datetime(2024, 6, 1, tzinfo=UTC)
 
 
 def test_zero_energy_no_wind():

@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-
 from custom_components.whatif_wind.influx import parse_flux_csv
 
 # Risposta tipica annotata di InfluxDB /api/v2/query.

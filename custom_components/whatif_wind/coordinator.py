@@ -16,7 +16,7 @@ dashboard.
 from __future__ import annotations
 
 import logging
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator
@@ -88,7 +88,7 @@ class WhatIfWindCoordinator(DataUpdateCoordinator):
     # ─── Update cycle ─────────────────────────────────────────────────────────
     async def _async_update_data(self) -> dict:
         await self._load_state()
-        now = datetime.now(tz=timezone.utc)
+        now = datetime.now(tz=UTC)
 
         if not self._state["seeded"]:
             await self._seed(now)

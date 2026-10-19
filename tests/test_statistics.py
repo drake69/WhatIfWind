@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import pytest
 
@@ -30,7 +30,7 @@ TURBINE = {
 }
 AIR = 1.225
 UNIT = "ms"
-T0 = datetime(2025, 1, 1, 10, 0, 0, tzinfo=timezone.utc)
+T0 = datetime(2025, 1, 1, 10, 0, 0, tzinfo=UTC)
 
 
 class _S:

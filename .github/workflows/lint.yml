@@ -22,7 +22,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install Ruff
-        run: pip install ruff
+        run: pip install ruff==0.17.1
 
       - name: Ruff check
         run: ruff check custom_components/whatif_wind/ tests/

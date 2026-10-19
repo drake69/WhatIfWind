@@ -68,7 +68,7 @@ def parse_flux_csv(text: str) -> list[Sample]:
         if not raw_time or not raw_value:
             continue
         try:
-            ts = datetime.fromisoformat(raw_time.replace("Z", "+00:00"))
+            ts = datetime.fromisoformat(raw_time)
         except ValueError:
             continue
         samples.append(Sample(last_changed=ts, state=raw_value))
@@ -116,7 +116,7 @@ async def async_fetch_wind_samples(hass, cfg: dict, days: int) -> list[Sample]:
             text = await resp.text()
     except InfluxError:
         raise
-    except Exception as err:  # noqa: BLE001 — rete/timeout/DNS: li normalizziamo
+    except Exception as err:
         raise InfluxError(str(err)) from err
 
     return parse_flux_csv(text)
