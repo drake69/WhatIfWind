@@ -87,7 +87,13 @@ def _power_parametric(turbine: dict[str, Any], wind_ms: float, air_density: floa
 
 
 def _power_tabular(curve: list[list[float]], wind_ms: float) -> float:
-    """Linear interpolation over the manufacturer's power curve."""
+    """Linear interpolation over the manufacturer's power curve.
+
+    Below the first point the turbine produces nothing; above the last point the
+    power is held at the last value (the cut-out check happens upstream).
+    """
+    if wind_ms < curve[0][0]:
+        return 0.0
     for i in range(len(curve) - 1):
         v0, p0 = curve[i]
         v1, p1 = curve[i + 1]
