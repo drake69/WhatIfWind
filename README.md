@@ -79,4 +79,4 @@ Issues and pull requests are welcome at
 
 ## License
 
-See the repository for license details.
+Released under the [MIT License](LICENSE).
