@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from datetime import UTC, datetime, timedelta
 
 import pytest
@@ -79,3 +80,11 @@ def test_to_cumulative_running_sum():
 
 def test_statistic_id_format():
     assert statistic_id("abc", "savonius") == "whatif_wind:abc_savonius_energy"
+
+
+def test_statistic_id_valid_for_uppercase_ulid_entry_id():
+    # Same pattern as homeassistant.components.recorder.statistics.VALID_STATISTIC_ID.
+    valid = re.compile(r"^(?!.+__)(?!_)[\da-z_]+(?<!_):(?!_)[\da-z_]+(?<!_)$")
+    sid = statistic_id("01KWQ5G29Z01Z2K00DF1F2GC5S", "amazon_vawt_h_6000w_220v")
+    assert sid == "whatif_wind:01kwq5g29z01z2k00df1f2gc5s_amazon_vawt_h_6000w_220v_energy"
+    assert valid.match(sid)
