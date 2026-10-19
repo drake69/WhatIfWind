@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WhatIfWind: know before you buy a wind turbine</title>
+<meta name="description" content="Home Assistant integration that runs your own anemometer data through a wind turbine model and tells you how much energy it would really produce at your home, before you buy it.">
+<link rel="canonical" href="https://luigicorsaro.com/WhatIfWind/">
+<link rel="alternate" hreflang="en" href="https://luigicorsaro.com/WhatIfWind/">
+<link rel="alternate" hreflang="it" href="https://luigicorsaro.com/WhatIfWind/it/">
+<link rel="alternate" hreflang="x-default" href="https://luigicorsaro.com/WhatIfWind/">
+<meta property="og:title" content="WhatIfWind: know before you buy a wind turbine">
+<meta property="og:description" content="Your anemometer, a turbine model, real physics. See what a small wind turbine would produce at your site.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://luigicorsaro.com/WhatIfWind/">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <nav class="lang"><a href="./" aria-current="page">EN</a><a href="it/" hreflang="it">IT</a></nav>
+  <h1>WhatIfWind</h1>
+  <p class="tagline">How much energy would a wind turbine produce at <strong>your</strong> home? Find out with your own wind data, before you spend a euro.</p>
+  <a class="cta" href="https://github.com/drake69/WhatIfWind#installation">Install with HACS</a>
+  <a class="cta secondary" href="https://github.com/drake69/WhatIfWind/discussions/categories/show-and-tell">Share your site</a>
+</header>
+
+<main class="container">
+
+  <section>
+    <h2>The problem: nameplates that physics does not allow</h2>
+    <p>Online marketplaces sell small turbines rated "3000 W" or "6000 W" with rotors half a metre wide. The power a rotor can extract is fixed by its swept area and by the wind, not by the label.</p>
+    <div class="grid">
+      <div class="card"><h3>Declared</h3><div class="big warn">6000 W</div><p class="muted">VAWT kit, rotor 0.53 m x 0.75 m (0.40 m²)</p></div>
+      <div class="card"><h3>Physical limit at 10 m/s</h3><div class="big">144 W</div><p class="muted">Betz limit: 59.3% of the 243 W carried by the wind through that rotor</p></div>
+      <div class="card"><h3>Realistic at 10 m/s</h3><div class="big ok">~68 W</div><p class="muted">Typical power coefficient and drivetrain losses</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="grid">
+      <div class="card"><h3>Your anemometer</h3><p>Point WhatIfWind at the wind sensor you already have in Home Assistant. It captures what grid weather data cannot: your height, your obstacles, your terrain.</p></div>
+      <div class="card"><h3>Your turbine</h3><p>Enter the rotor geometry from the datasheet, or the manufacturer's power curve. The nameplate is only used as a cap.</p></div>
+      <div class="card"><h3>Real numbers</h3><p>Live power, simulated energy, annual projection, capacity factor and a daily/monthly/yearly series, backfilled from InfluxDB if you have it.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>A real case: two years on a rooftop</h2>
+    <p>Anemometer on a roof at about 6.5 m, two years of hourly data (Nov 2024 to Oct 2026). Mean wind 0.74 m/s; only 2.6% of the hours averaged above 3 m/s.</p>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Turbine</th><th>Declared</th><th>Price</th><th>Simulated energy</th><th>Value per year</th></tr></thead>
+      <tbody>
+        <tr><td>VAWT H-rotor 0.53 x 0.75 m</td><td>6000 W</td><td>329 EUR</td><td>2.5 to 4.1 kWh/year</td><td>about 1 EUR</td></tr>
+        <tr><td>VAWT 0.53 x 0.75 m</td><td>3000 W</td><td>n/a</td><td>3.0 to 4.8 kWh/year</td><td>about 1 EUR</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="muted">Value at 0.25 EUR/kWh. At this site any turbine yields roughly 10 kWh per m² of rotor per year: even a large 10 m² rotor would earn a few tens of euros a year. The purchase was not made, and the money stayed in the pocket. <a href="https://github.com/drake69/WhatIfWind/blob/master/docs/case_study_rooftop_vawt.md">Read the full case study</a>.</p>
+  </section>
+
+  <section>
+    <h2>Your site is a data point</h2>
+    <div class="field">
+      <p>Small wind is full of promises and short on measured results. If you run WhatIfWind, share what you found in <strong>Show and tell</strong>: a short form, no exact address needed.</p>
+      <ul>
+        <li>region and type of site, anemometer and its height;</li>
+        <li>mean wind and the period analysed;</li>
+        <li>turbines evaluated, simulated kWh per year, and what you decided;</li>
+        <li>if you installed one: the real production against the prediction.</li>
+      </ul>
+      <a class="cta" href="https://github.com/drake69/WhatIfWind/discussions/new?category=show-and-tell">Post a field report</a>
+      <a class="cta" href="https://github.com/drake69/WhatIfWind">Star the project on GitHub</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  WhatIfWind is free software under the MIT license, made by <a href="https://luigicorsaro.com/">Luigi Corsaro</a>.
+  Estimates, not measurements: the energy shown is what a turbine would have produced, not what one did.
+</footer>
+
+</body>
+</html>
