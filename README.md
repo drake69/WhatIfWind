@@ -11,6 +11,9 @@ It takes the wind-speed history of your own anemometer and runs it through the p
 chosen turbine model, producing a retrospective estimate of the energy that turbine *would* have
 generated — without installing any hardware.
 
+Project page: **[luigicorsaro.com/WhatIfWind](https://luigicorsaro.com/WhatIfWind/)**, with a real
+rooftop case study.
+
 ## How it works
 
 You point the integration at a local wind-speed sensor. The sensor captures the real conditions
@@ -71,6 +74,18 @@ from that point on, not retroactively.
 
 - Home Assistant `recorder` (used for the production history).
 - Optional: an InfluxDB instance for retrospective backfill.
+
+## Field reports: share your site
+
+Small wind is full of nameplate promises and short on measured results. If you used WhatIfWind
+to evaluate a turbine, please post what you found in
+[Show and tell](https://github.com/drake69/WhatIfWind/discussions/categories/show-and-tell):
+a short form asks for your region (no exact address), anemometer and its height, mean wind,
+the turbines you evaluated with their simulated kWh per year, and what you decided. If you
+installed a turbine, its real production against the prediction is the most valuable data of all.
+
+If WhatIfWind saved you from a bad purchase, or helped you make a good one, a
+[star on GitHub](https://github.com/drake69/WhatIfWind) helps others find it.
 
 ## Contributing
 

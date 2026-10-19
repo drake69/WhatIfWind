@@ -1,0 +1,76 @@
+title: "[Field report] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for sharing your site! Every report adds a real data point on what small wind
+        turbines actually produce, as opposed to what their nameplate promises.
+        Approximate values are fine. Do not post your exact address: a region is enough.
+
+  - type: input
+    id: region
+    attributes:
+      label: Region and setting
+      description: Country/region and type of site (urban, suburban, rural, coastal, hilltop).
+      placeholder: "Northern Italy, suburban"
+    validations:
+      required: true
+
+  - type: input
+    id: anemometer
+    attributes:
+      label: Anemometer model and mounting height
+      placeholder: "Ecowitt GW1100A on the roof, about 6.5 m"
+    validations:
+      required: true
+
+  - type: input
+    id: period
+    attributes:
+      label: Period of wind data analysed
+      placeholder: "Nov 2024 - Oct 2026 (2 years)"
+    validations:
+      required: true
+
+  - type: input
+    id: wind_mean
+    attributes:
+      label: Mean wind speed over the period (m/s)
+      description: The long-term mean of the sensor, if you know it.
+      placeholder: "0.74"
+
+  - type: textarea
+    id: turbines
+    attributes:
+      label: Turbines evaluated
+      description: |
+        One line per turbine: model, axis, rotor size (diameter x height or blade length),
+        declared power, price, simulated kWh per year.
+      placeholder: |
+        VAWT H-rotor, 0.53 x 0.75 m, sold as 6000 W, 329 EUR, 4 kWh/year
+    validations:
+      required: true
+
+  - type: dropdown
+    id: decision
+    attributes:
+      label: What did you decide?
+      options:
+        - Did not buy
+        - Bought / installed
+        - Still evaluating
+    validations:
+      required: true
+
+  - type: textarea
+    id: real_production
+    attributes:
+      label: Real production (if you installed a turbine)
+      description: Measured energy compared with what WhatIfWind predicted. This is the most valuable data of all.
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else
+      description: Surprises, obstacles near the sensor, screenshots of the WhatIfWind sensors.
