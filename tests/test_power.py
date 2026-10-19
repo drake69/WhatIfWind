@@ -168,6 +168,13 @@ def test_tabular_zero_below_cut_in():
     assert compute_power(HAWT_TAB, 2.0, 1.225) == 0.0
 
 
+def test_tabular_zero_below_first_curve_point():
+    # A curve that starts above cut-in must not fall through to the last
+    # (rated) point for winds between cut-in and its first speed.
+    turbine = {**HAWT_TAB, "cut_in_ms": 3.0, "power_curve": [[4.0, 120], [11.0, 1000]]}
+    assert compute_power(turbine, 3.5, 1.225) == 0.0
+
+
 def test_tabular_interpolation_midpoint():
     # Tra 5 m/s (220 W) e 6 m/s (370 W) → a 5.5 m/s aspettiamoci ~295 W
     p = compute_power(HAWT_TAB, 5.5, 1.225)
